@@ -1,6 +1,6 @@
 /**
  * @file errors.c
- * @author
+ * @author Pendiente 
  * @brief Funciones para manejo de errores
 */
 #include "errors.h"
@@ -41,9 +41,6 @@ void print_error(int num, char* target, char* obs) {
         case 203:
             printf("Acceso a puntero nulo\n");
             break;
-        case 204:
-            printf("No se puedo leer la palabra");
-            break;
         case 300:
             printf("Lista vacia\n");
             break;
@@ -61,12 +58,6 @@ void print_error(int num, char* target, char* obs) {
             break;
         case 305:
             printf("No se pudo abrir el directorio %s\n", target);
-            break;
-        case 306:
-            printf("No se ingreso ninguna palabra \n");
-            break;
-        case 307:
-            printf("Debe ingresar una palabra unica \n");
             break;
         default:
             printf("Codigo de error desconocido\n");

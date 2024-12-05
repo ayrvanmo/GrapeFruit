@@ -27,10 +27,10 @@ typedef struct _graphHasTable* Graph;
 */
 struct _graphNode {
     UserPosition user; /*!<Puntero a la estructura que contiene información sobre el usuario */
-    FriendList adjacency; /*!< Lista de nodos adyacentes al nodo */
-    FriendList incidence; /*!< Lista de nodos que lo incluyen como adyacente */
-    int adjacencyNumber; /*!< Numero de nodos adyacentes al nodo */
-    int incidenceNumber; /*!< Numero de nodos que lo incluyen como adyacente */
+    FriendList follows; /*!< Lista de nodos adyacentes al nodo */
+    FriendList followers; /*!< Lista de nodos que lo incluyen como adyacente */
+    int followsNumber; /*!< Numero de nodos adyacentes al nodo */
+    int followersNumber; /*!< Numero de nodos que lo incluyen como adyacente */
     GraphPosition next; /*!< Posición siguiente en la lista de nodos del grafo */
 };
 

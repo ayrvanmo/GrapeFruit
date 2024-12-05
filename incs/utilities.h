@@ -1,6 +1,6 @@
 /**
  * @file utilities.h
- * @author
+ * @author Pendiente
  * @brief Cabecera para funciones de utilities.c
 */
 #ifndef UTILITIES_H

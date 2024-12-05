@@ -1,6 +1,6 @@
 /**
  * @file errors.h
- * @author
+ * @author Pendiente
  * @brief Cabeceras para funciones de errors.c
 */
 #ifndef ERRORS_H

@@ -1,7 +1,7 @@
 /**
  * @file graph.c
- * @author Por ver
- * @brief Funciones relacionadas con el grafo de archivos
+ * @author Pendiente
+ * @brief Funciones relacionadas con el grafo de Usuarios
 */
 #include "graph.h"
 
@@ -73,10 +73,10 @@ void print_graphList(GraphList graphList)
 void print_graphNode(GraphPosition P)
 {
     printf("Nodo: %s", P->user->name);
-    printf("Lista de adyacencias [%d]:\n", P->adjacencyNumber);
-    print_friendList(P->adjacency);
-    printf("Lista de incidencias [%d]:\n", P->incidenceNumber);
-    print_friendList(P->incidence);
+    printf("Lista de adyacencias [%d]:\n", P->followsNumber);
+    print_friendList(P->follows);
+    printf("Lista de incidencias [%d]:\n", P->followersNumber);
+    print_friendList(P->followers);
 }
 
 /**
@@ -115,7 +115,7 @@ GraphPosition find_graphList_prev_node(GraphPosition P, GraphList graphList)
 /**
  * @brief Funcion para insertar un nodo en una lista de nodos
  * @param prevPosition Puntero al nodo anterior al que se desea insertar el nuevo nodo
- * @param user Archivo contenido en el nodo
+ * @param user Usuario contenido en el nodo
  * @return Puntero al nodo insertado
 */
 GraphPosition insert_graphList_node(GraphPosition prevPosition, UserPosition user)
@@ -126,11 +126,11 @@ GraphPosition insert_graphList_node(GraphPosition prevPosition, UserPosition use
     }
     newNode->next = prevPosition->next;
     prevPosition->next = newNode;
-    newNode->adjacency = create_empty_friendList(NULL);
-    newNode->incidence = create_empty_friendList(NULL);
+    newNode->follows = create_empty_friendList(NULL);
+    newNode->followers = create_empty_friendList(NULL);
     newNode->user = user;
-    newNode->adjacencyNumber = 0;
-    newNode->incidenceNumber = 0;
+    newNode->followsNumber = 0;
+    newNode->followersNumber = 0;
     return newNode;
 }
 
@@ -151,8 +151,8 @@ void delete_graphList_node(GraphPosition P, GraphList graphList)
     }
 
     prevNode->next = P->next;
-    delete_friendList(P->adjacency);
-    delete_friendList(P->incidence);
+    delete_friendList(P->follows);
+    delete_friendList(P->followers);
     free(P);
 }
 
@@ -199,7 +199,7 @@ GraphPosition graphList_advance(GraphPosition P)
 */
 FriendList get_adjacentList(GraphPosition P)
 {
-    return P->adjacency;
+    return P->follows;
 }
 
 /**
@@ -208,7 +208,7 @@ FriendList get_adjacentList(GraphPosition P)
  * @return Puntero a la lista de incidencias
 */
 FriendList get_incidentList(GraphPosition P){
-    return P->incidence;
+    return P->followers;
 }
 
 /**
@@ -273,7 +273,7 @@ void print_graph(Graph graph)
 
 /**
  * @brief Funcion para insertar un nodo en un grafo
- * @param user Archivo contenido en el nodo
+ * @param user Usuario contenido en el nodo
  * @param graph Grafo en el que se desea insertar el nodo
  * @return Puntero al nodo insertado
 */
@@ -288,8 +288,8 @@ GraphPosition insert_graphNode(UserPosition user, Graph graph)
 }
 
 /**
- * @brief Busca un nodo en el grafo basado en el nombre del archivo que contiene
- * @param name Nombre del archivo a buscar
+ * @brief Busca un nodo en el grafo basado en el nombre del Usuario que contiene
+ * @param name Nombre del Usuario a buscar
  * @param graph Grafo en el que se busca el nodo de nombre @p name
 */
 GraphPosition find_graphNode(char *name, Graph graph)
@@ -300,7 +300,7 @@ GraphPosition find_graphNode(char *name, Graph graph)
 
 /**
  * @brief Funcion para borrar un nodo de un grafo
- * @param name Nombre del archivo contenido en el nodo
+ * @param name Nombre del Usuario contenido en el nodo
  * @param graph Grafo en el que se busca el nodo de nombre @p name
 */
 void delete_graphNode(char *name, Graph graph)
@@ -336,18 +336,18 @@ void delete_graph(Graph graph)
 */
 FriendPosition create_graph_edge(GraphPosition node1, GraphPosition node2)
 {
-    FriendPosition nodeTo = insert_friendList_node(node1->adjacency, node2);
+    FriendPosition nodeTo = insert_friendList_node(node1->follows, node2);
     if(nodeTo == NULL){
         print_error(303, NULL, NULL);
         return NULL;
     }
-    FriendPosition nodeFrom = insert_friendList_node(node2->incidence, node1);
+    FriendPosition nodeFrom = insert_friendList_node(node2->followers, node1);
     if(nodeFrom == NULL){
         print_error(303, NULL, NULL);
         return NULL;
     }
-    node1->adjacencyNumber++;
-    node2->incidenceNumber++;
+    node1->followsNumber++;
+    node2->followersNumber++;
     return nodeTo;
 }
 
@@ -359,19 +359,19 @@ FriendPosition create_graph_edge(GraphPosition node1, GraphPosition node2)
 */
 void remove_graph_edge(GraphPosition node1, GraphPosition node2)
 {
-    FriendPosition nodeTo = find_friendList_node(node1->adjacency, *node2);
+    FriendPosition nodeTo = find_friendList_node(node1->follows, *node2);
     if(nodeTo == NULL){
         print_error(301, NULL, NULL);
         return;
     }
-    delete_friendList_node(nodeTo, node1->adjacency);
-    node1->adjacencyNumber--;
+    delete_friendList_node(nodeTo, node1->follows);
+    node1->followsNumber--;
 
-    FriendPosition nodeFrom = find_friendList_node(node2->incidence, *node1);
+    FriendPosition nodeFrom = find_friendList_node(node2->followers, *node1);
     if(nodeFrom == NULL){
         print_error(301, NULL, NULL);
         return;
     }
-    delete_friendList_node(nodeFrom, node2->incidence);
-    node2->incidenceNumber--;
+    delete_friendList_node(nodeFrom, node2->followers);
+    node2->followersNumber--;
 }

@@ -1,6 +1,6 @@
 /**
  * @file hash.c
- * @author
+ * @author Pendiente
  * @brief Funciones de hashing
 */
 #include "hash.h"

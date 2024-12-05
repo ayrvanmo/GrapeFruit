@@ -1,6 +1,6 @@
 /**
  * @file friend_list.h
- * @author
+ * @author Pendiente
  * @brief Cabeceras para funciones de friend_list.c
 */
 
@@ -45,6 +45,7 @@ FriendPosition friendList_first(FriendList friendList);
 FriendPosition friendList_last(FriendList friensList);
 FriendPosition friendList_advance(FriendPosition P);
 PtrToGraphNode get_graphNode(FriendPosition P);
+
 
 
 

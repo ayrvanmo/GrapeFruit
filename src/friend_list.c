@@ -1,6 +1,6 @@
 /**
  * @file link_list.c
- * @author
+ * @author Pendiente
  * @brief Funciones para el manejo de una lista de enlaces(amistades) a nodos de un grafo
 */
 
@@ -60,7 +60,7 @@ void print_friendList(FriendList FriendList) {
     FriendPosition P = friendList_first(FriendList);
 
     while (P != NULL) {
-        printf("        Nodo: %s", P->graphNode->user->name);
+        printf(" %s ", P->graphNode->user->name);
         P = P->next;
     }
 }

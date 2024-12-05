@@ -1,6 +1,6 @@
 /**
  * @file utilities.c
- * @author 
+ * @author Pendiente
  * @brief Definiciones de funciones de miscelania
 */
 
@@ -28,23 +28,23 @@ char* get_terminal_parameters(int argc, char **argv){
 
 		switch(opt){
 			case 'h':
-				printf("fly -d <directorio>      Ejecuta el programa sobre un directorio\n");
+				printf("NOMBRE -d <directorio>      Ejecuta el programa sobre un directorio\n");
 				return NULL;
                 break;
 			case 'd':
                 return optarg;
                 break;
 			case ':':
-                printf("Uso: 'fly -d <directorio>'\n'fly -h' para mostrar ayuda\n");
+                printf("Uso: 'NOMBRE -d <directorio>'\n'NOMBRE -h' para mostrar ayuda\n");
 				return NULL;
 				break;
 			default:
-				printf("Uso: 'fly -d <directorio>'\n'fly -h' para mostrar ayuda\n");
+				printf("Uso: 'NOMBRE -d <directorio>'\n'NOMBRE -h' para mostrar ayuda\n");
                 return NULL;
 				break;
 		}
 	}
-    printf("Uso: 'fly -d <directorio>'\n'fly -h' para mostrar ayuda\n");
+    printf("Uso: 'NOMBRE -d <directorio>'\n'fly -h' para mostrar ayuda\n");
     return NULL;
 }
 

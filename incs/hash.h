@@ -1,10 +1,10 @@
 /**
  * @file hash.h
- * @author
+ * @author Pendiente
  * @brief Cabeceras para funciones de hash.c
 */
-#ifndef HASH
-#define HASH
+#ifndef HASH_H
+#define HASH_H
 
 #include <stdio.h>
 #include <stdlib.h>

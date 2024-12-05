@@ -1,6 +1,6 @@
 /**
  * @User user.h
- * @author Franco Aguilar, Milton Hernández, Iván Mansilla, Ayrton Morrison
+ * @author Pendiente
  * @brief Cabecera para funciones de user.c
  */
 
@@ -19,21 +19,23 @@ typedef PtrToUserNode UserPosition;
 #include "graph.h"
 #include "errors.h"
 #include "utilities.h"
+#include "preferences.h"
 
 /** \struct _UserNode
  *  @brief Estructura que representa una lista de usuarios
 */
 struct _UserNode {
-    int userCount;
-    char* userPath;
+    int friendCount;
+    int preferencesCount;
     char* name;
-    unsigned long id;
+    FriendList mutuals;
+    PreferencesList preferences;
     PtrToUserNode Next;
 };
 
-// funciones para el manejo de archivos
+// funciones para el manejo de usuarios
 UserList make_empty_userList(UserList L);
-UserPosition insert_userList_user(UserList L, UserPosition Prev, char* UserPath, char* name, unsigned long id);
+UserPosition insert_userList_user(UserList L, UserPosition Prev, char* name);
 void delete_userList(UserList L);
 void print_userList(UserList L);
 UserList get_users_from_directory(char *directory, UserList list);
