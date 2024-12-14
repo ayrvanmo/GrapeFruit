@@ -1,5 +1,5 @@
 CC=gcc
-EXEC=program.out
+EXEC=grape.out
 GRUPO=G1
 NTAR=2
 
@@ -10,7 +10,7 @@ OBJ_FILES=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 INCLUDE=-I./incs/
 LIBS= -lm
 
-CFLAGS=-Wall -Wextra -Wpedantic -O3
+CFLAGS=-Wall -Wextra -Wpedantic -O3 -g
 LDFLAGS= -Wall -lm
 
 all: $(OBJ_FILES)

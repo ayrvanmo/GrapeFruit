@@ -19,8 +19,6 @@ InterestList init_empty_interestList()
     }
     newInterestList->key = NULL;
     newInterestList->next = NULL;
-    newInterestList->userCount = 0;
-    newInterestList->users = NULL;
     return newInterestList;
 }
 
@@ -30,7 +28,7 @@ InterestList init_empty_interestList()
  */
 InterestTable init_interestTable()
 {
-    InterestTable newInterestTable = malloc(sizeof(struct _InterestTable)*INTEREST_TABLE_SIZE);
+    InterestTable newInterestTable = malloc(sizeof(struct _interestTable)*INTEREST_TABLE_SIZE);
     if(!newInterestTable)
     {
         print_error(200, NULL, NULL);
@@ -50,35 +48,53 @@ void print_interestTable(InterestTable interestTable)
     }
 }
 
-InterestList insert_int_to_interestTable(InterestTable interestTable, char* key)
+InterestPosition insert_interestNode(char*key, InterestTable interestTable)
 {
-    int hashKey = jenkins_hash(key);
-    InterestList newInterest = malloc(sizeof(InterestNode));
-    if(!newInterest)
+    int index = jenkins_hash(key) % INTEREST_TABLE_SIZE;
+    InterestPosition P = insert_int_to_interestList(interestTable[index].interestList, key);
+    if(P!=NULL){
+        interestTable[index].interestNumber++;
+    }
+    return P;
+}
+
+InterestPosition insert_int_to_interestList(InterestPosition prevPosition, char* key)
+{
+    InterestPosition newNode = (InterestPosition)malloc(sizeof(struct _interestNode));
+    if(newNode == NULL)
     {
         print_error(200, NULL, NULL);
     }
-    newInterest->key = key;
-    newInterest->next = interestTable[hashKey].interestList->next;
-    interestTable[hashKey].interestList->next = newInterest;
-    interestTable[hashKey].interestNumber++;
-    return newInterest;
+    newNode->key = malloc(strlen(key) + 1);
+    if(newNode->key == NULL)
+    {
+        print_error(200, NULL, NULL);
+    }
+    strcpy(newNode->key, key);
+    newNode->next = prevPosition->next;
+    prevPosition->next = newNode;
+    return newNode;
 }
 
-InterestList search_int_in_interestTable(InterestTable interestTable, char* key)
+
+InterestPosition search_int_in_interestTable(InterestTable interestTable, char* key)
 {
-    int hashKey = jenkins_hash(key);
-    InterestList P = interestTable[hashKey].interestList->next;
+
+    unsigned int hashKey = jenkins_hash(key) % INTEREST_TABLE_SIZE;
+
+    InterestPosition P = interestTable[hashKey].interestList->next;
+
     while(P != NULL && strcmp(P->key, key) != 0)
     {
         P = P->next;
     }
+    //printf("exitoso\n");
     return P;
 }
 
 InterestList find_previous_int(InterestTable interestTable, char* key)
 {
-    int hashKey = jenkins_hash(key);
+    int hashKey = jenkins_hash(key) % INTEREST_TABLE_SIZE;
     InterestList P = interestTable[hashKey].interestList;
     while(P->next != NULL && strcmp(P->next->key, key) != 0)
     {
@@ -89,7 +105,7 @@ InterestList find_previous_int(InterestTable interestTable, char* key)
 
 void delete_interest_node(InterestTable interestTable, char* key)
 {
-    int hashKey = jenkins_hash(key);
+    int hashKey = jenkins_hash(key) % INTEREST_TABLE_SIZE;
     InterestList P = find_previous_int(interestTable, key);
     if(P == NULL)
     {
@@ -97,6 +113,7 @@ void delete_interest_node(InterestTable interestTable, char* key)
     }
     InterestList TmpCell = P->next;
     P->next = TmpCell->next;
+    free(TmpCell->key);
     free(TmpCell);
     interestTable[hashKey].interestNumber--;
 }
@@ -108,67 +125,19 @@ void delete_interestTable(InterestTable interestTable)
         while(P != NULL){
             InterestList TmpCell = P;
             P = P->next;
+            free(TmpCell->key);
             free(TmpCell);
         }
     }
     free(interestTable);
 }
 
-// MANEJO DE USUARIOS
-InterestList insert_user_to_interestList(InterestList interestList, UserPosition user)
-{
-    UserPosition P = interestList->users;
-    while(P != NULL && strcmp(P->name, user->name) != 0) // ESTA PARTE SE PODRIA MEJORAR CON OTRO TIPO DE BUSQUEDA MAS EFICIENTE
-    {
-        P = P->Next;
-    }
-    if(P == NULL)
-    {
-        user->Next = interestList->users;
-        interestList->users = user;
-        interestList->userCount++;
-    }
-    return interestList;
-}
-
 void print_interestList(InterestList interestList)
 {
-    UserPosition P = interestList->users;
-    while(P != NULL)
-    {
-        printf("%s\n", P->name);
-        P = P->Next;
+    InterestList P = interestList;
+    while(P != NULL){
+        printf("Interes: %s\n", P->key);
+        P = P->next;
     }
 }
 
-void delete_user_from_interestList(InterestList interestList, UserPosition user)
-{
-    UserPosition P = find_previous_user_in_interestList(interestList, user->name);
-    if(P == NULL)
-    {
-        print_error(203, NULL, NULL);
-    }
-    P->Next = user->Next;
-    free(user);
-    interestList->userCount--;
-}
-
-UserPosition find_user_in_interestList(InterestList interestList, char* userName)
-{
-    UserPosition P = interestList->users;
-    while(P != NULL && strcmp(P->name, userName) != 0)
-    {
-        P = P->Next;
-    }
-    return P;
-}
-
-UserPosition find_previous_user_in_interestList(InterestList interestList, char* userName)
-{
-    UserPosition P = interestList->users;
-    while(P->Next != NULL && strcmp(P->Next->name, userName) != 0)
-    {
-        P = P->Next;
-    }
-    return P;
-}

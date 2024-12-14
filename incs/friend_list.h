@@ -35,7 +35,7 @@ FriendList create_empty_friendList(FriendList friendList);
 void delete_friendList(FriendList friendList);
 bool is_empty_friendList(FriendList friendList);
 void print_friendList(FriendList friendList);
-FriendPosition find_friendList_node(FriendList friendList, GraphNode graphNode);
+FriendPosition find_friendList_node(FriendList friendList, GraphPosition graphNode);
 FriendPosition find_friendList_prev_node(FriendPosition P, FriendList FriendList);
 FriendPosition insert_friendList_node(FriendPosition prevPosition, PtrToGraphNode graphNode);
 void delete_friendList_node(FriendPosition P, FriendList friendList);
