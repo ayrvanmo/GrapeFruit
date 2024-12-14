@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber main"] 1733619177.57612 "main.bcf" "main.bbl" "main" 1733619775.22749 0
-  "main.bcf" 1733619774 107747 817bfe3aee8de63e05b1dffe97b4566d "pdflatex"
+["biber main"] 1733619177.57612 "main.bcf" "main.bbl" "main" 1734184798.46867 0
+  "main.bcf" 1734184797 107747 817bfe3aee8de63e05b1dffe97b4566d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1733619771.04743 "c:/Users/manue/Desktop/GitHub/tarea_4/docs/Latex/main.tex" "main.pdf" "main" 1733619775.22833 0
+["pdflatex"] 1734184790.62475 "c:/Users/manue/Desktop/GitHub/tarea_4/docs/Latex/main.tex" "main.pdf" "main" 1734184798.46956 0
   "C:/Users/manue/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1733618699 87439 92ff9d8e0e2368ea2f04e93b6ef7dc2c ""
   "C:/Users/manue/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1733618101 24225046 154ccecc62b4161c4ca45e17f09df0ed ""
   "C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -315,21 +315,21 @@
   "C:/Users/manue/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/manue/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "c:/Users/manue/Desktop/GitHub/tarea_4/docs/Latex/main.tex" 1733619169 3104 b6d550cba48f21042b886722b4d6c26f ""
-  "main.aux" 1733619774 3939 65d812be6a50b67253e565f7aedcefc7 "pdflatex"
+  "main.aux" 1734184797 3939 65d812be6a50b67253e565f7aedcefc7 "pdflatex"
   "main.bbl" 1733619182 486 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.run.xml" 1733619774 2395 d98154d1176e4710f71a8053f928e7d5 "pdflatex"
+  "main.run.xml" 1734184797 2395 d98154d1176e4710f71a8053f928e7d5 "pdflatex"
   "main.tex" 1733619169 3104 b6d550cba48f21042b886722b4d6c26f ""
-  "main.toc" 1733619774 663 1f2f3640253db43799beb6cb4af4b633 "pdflatex"
+  "main.toc" 1734184797 663 1f2f3640253db43799beb6cb4af4b633 "pdflatex"
   "rho-class/rho.cls" 1733018297 17868 6ab364994dd4b55beec88fa4869b20fe ""
   "rho-class/rhobabel.sty" 1733018297 3162 75568baf4c3465ebb845f6cae9c5a398 ""
   "rho-class/rhoenvs.sty" 1733018297 3232 2710b6b553fc2b0389d4c7717dc6bb5a ""
   "src/figures/logo-umag-ing.png" 1733018297 289780 c36148e818e6529b3541685395ede274 ""
-  "src/sections/conclusiones.tex" 1733018298 23 200a26bf56f8ce55af7bdf33584c2bc7 ""
-  "src/sections/desarrollo.tex" 1733619312 907 8331825bc255f306a275f9fc2bdfcc83 ""
-  "src/sections/ejemplo.tex" 1733018298 25 a9a00a0506b518dcbce8974d056fb93d ""
-  "src/sections/equipo.tex" 1733619702 283 f5023388b2da2b05245e9f0c0b612a95 ""
-  "src/sections/implementacion.tex" 1733619439 1105 b01146b60b414d7aa451880d515fdd47 ""
-  "src/sections/introduccion.tex" 1733617300 850 fa4383c76a299b6a4e0300b667bc17e1 ""
+  "src/sections/conclusiones.tex" 1734184496 366 8b5c5a7eb60d6bb1742be5a3ede88d2a ""
+  "src/sections/desarrollo.tex" 1734184442 767 fa4aedaef6fd9f5cd7ce3c90cbfb0702 ""
+  "src/sections/ejemplo.tex" 1734108828 833 4e6758f75e079430c508c6589c4f56b6 ""
+  "src/sections/equipo.tex" 1734108537 455 16b09b3ce321215ba75a2d421768d2cd ""
+  "src/sections/implementacion.tex" 1734184786 1166 b6372d832fdaebee05a7908dea1be4aa ""
+  "src/sections/introduccion.tex" 1734184442 783 cc09ebfd75e0faf95acd94ad187d4e62 ""
   "src/sections/mejoras.tex" 1733619770 1057 48a95fa949e4bf4cf9df483f1f9a937a ""
   "src/sections/objetivos.tex" 1733619253 441 5c3d2825c9551d0537d6cc9ddf152b85 ""
   (generated)

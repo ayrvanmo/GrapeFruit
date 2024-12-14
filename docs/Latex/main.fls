@@ -746,6 +746,7 @@ INPUT src\sections\mejoras.tex
 INPUT .\src\sections\ejemplo.tex
 INPUT .\src\sections\ejemplo.tex
 INPUT src\sections\ejemplo.tex
+INPUT C:\Users\manue\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text.tfm
 INPUT .\src\sections\conclusiones.tex
 INPUT .\src\sections\conclusiones.tex
 INPUT src\sections\conclusiones.tex
