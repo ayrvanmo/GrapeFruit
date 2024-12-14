@@ -25,6 +25,7 @@ void print_error(int num, char* target, char* obs) {
     switch(num) {
         case 100:
             printf("No se pudo leer el archivo %s\n", target);
+            exit(-1);
             break;
         case 200:
             printf("No hay memoria disponible\n");

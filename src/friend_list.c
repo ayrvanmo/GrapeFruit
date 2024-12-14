@@ -58,11 +58,12 @@ bool is_empty_friendList(FriendList FriendList)
 */
 void print_friendList(FriendList FriendList) {
     FriendPosition P = friendList_first(FriendList);
-
+    printf("[");
     while (P != NULL) {
-        printf(" %s ", P->graphNode->user->name);
+        printf(" -%s", P->graphNode->user->name);
         P = P->next;
     }
+    printf(" ]");
 }
 
 /**
@@ -71,13 +72,13 @@ void print_friendList(FriendList FriendList) {
  * @param graphNode Nodo de grafo que se desea buscar en la lista
  * @return Puntero al nodo si se encuentra, NULL en caso contrario
 */
-FriendPosition find_friendList_node(FriendList FriendList, GraphNode graphNode)
+FriendPosition find_friendList_node(FriendList FriendList, GraphPosition graphNode)
 {
     if(is_empty_friendList(FriendList)){
         return NULL;
     }
     FriendPosition P = friendList_first(FriendList);
-    while (P != NULL && strcmp(P->graphNode->user->name, graphNode.user->name) != 0) {
+    while (P != NULL && strcmp(P->graphNode->user->name, graphNode->user->name) != 0) {
         P = P->next;
     }
     return P;
@@ -105,13 +106,13 @@ FriendPosition find_friendList_prev_node(FriendPosition P, FriendList friendList
 */
 FriendPosition insert_friendList_node(FriendPosition prevPosition, PtrToGraphNode graphNode)
 {
+
     FriendPosition newNode = (FriendPosition) malloc(sizeof(struct _FriendListNode));
     if(newNode == NULL){
         print_error(200, NULL, NULL);
     }
 
     newNode->graphNode = graphNode;
-
     newNode->next = prevPosition->next;
     prevPosition->next = newNode;
     return newNode;

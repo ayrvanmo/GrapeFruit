@@ -48,7 +48,7 @@ void delete_graphList(GraphList graphList)
         delete_graphList_node(aux, graphList);
         aux = graphList->next;
     }
-    free(graphList); // No se necesitan liberar adyacencias y incidencias porque no fueron alocadas en el centinela
+    free(graphList);
 }
 
 /**
@@ -60,7 +60,12 @@ void print_graphList(GraphList graphList)
     GraphPosition P = graphList_first(graphList);
 
     while (P != NULL) {
-        printf("Nodo: %s", P->user->name);
+        printf("Nodo: %s, Follows: ", P->user->name);
+        print_friendList(P->follows);
+        printf("Followers: ");
+        print_friendList(P->followers);
+        printf("Mutuals: ");
+        print_friendList(P->user->mutuals);
         P = P->next;
     }
 }
@@ -260,8 +265,9 @@ void print_graph(Graph graph)
     for(int i = 0; i < GRAPH_HASH_SIZE; i++)
     {
         printf("-----------------------------\n");
-        printf("Hash key: %d\n", i);
+        printf("Hash key: %d\n  ", i);
         print_graphList(graph[i].nodeList);
+        //print()
         printf("\n\n");
     }
     // Cantidad de nodos
@@ -312,6 +318,7 @@ void delete_graphNode(char *name, Graph graph)
         return;
     }
     delete_graphList_node(P, graph[index].nodeList);
+
     graph[index].nodeNumber--;
 }
 
@@ -359,7 +366,7 @@ FriendPosition create_graph_edge(GraphPosition node1, GraphPosition node2)
 */
 void remove_graph_edge(GraphPosition node1, GraphPosition node2)
 {
-    FriendPosition nodeTo = find_friendList_node(node1->follows, *node2);
+    FriendPosition nodeTo = find_friendList_node(node1->follows, node2);
     if(nodeTo == NULL){
         print_error(301, NULL, NULL);
         return;
@@ -367,7 +374,7 @@ void remove_graph_edge(GraphPosition node1, GraphPosition node2)
     delete_friendList_node(nodeTo, node1->follows);
     node1->followsNumber--;
 
-    FriendPosition nodeFrom = find_friendList_node(node2->followers, *node1);
+    FriendPosition nodeFrom = find_friendList_node(node2->followers, node1);
     if(nodeFrom == NULL){
         print_error(301, NULL, NULL);
         return;

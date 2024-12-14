@@ -44,7 +44,7 @@ char* get_terminal_parameters(int argc, char **argv){
 				break;
 		}
 	}
-    printf("Uso: 'NOMBRE -d <directorio>'\n'fly -h' para mostrar ayuda\n");
+    printf("Uso: 'NOMBRE -d <directorio>'\n'NOMBRE -h' para mostrar ayuda\n");
     return NULL;
 }
 
