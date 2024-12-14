@@ -16,14 +16,21 @@ typedef PtrToUserNode UserPosition;
 #include <string.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "graph.h"
 #include "errors.h"
 #include "utilities.h"
 #include "preferences.h"
 #include "interest.h"
+#include "jaccard.h"
 
-#define MAX_NAME 50
+
+#define MAX_NAME 30
+#define MAX_STOCK_NAMES 71
 #define MAX_DESCRIPTION 200
+#define MAX_INTEREST_NAME 25
+#define MAX_INTERESTS 26
 
 /** \struct _UserNode
  *  @brief Estructura que representa una lista de usuarios
@@ -35,6 +42,7 @@ struct _UserNode {
     char* name;
     char* description;
     InterestTable interests;
+    PreferencesList posts;
     FriendList mutuals;
     PtrToUserNode Next;
 };
@@ -51,6 +59,12 @@ int count_usersList(UserList L);
 void delete_userList_user(UserList L, UserPosition user);
 UserPosition find_userList_user(UserList L, char* userName);
 UserPosition find_userList_prev_user(UserList L, UserPosition user);
-
+void make_recomendations_for_user(UserPosition user, UserList list, Graph graph);
+void create_users_batch(UserList list, Graph graph, char interests[MAX_INTERESTS][MAX_INTEREST_NAME], char names[MAX_STOCK_NAMES][MAX_NAME]);
+void fill_array_with_interests_from_file(char array[MAX_INTERESTS][MAX_INTEREST_NAME]);
+void fill_array_with_names_from_file(char array[MAX_STOCK_NAMES][MAX_NAME]);
+void create_users_batch(UserList list, Graph graph, char interests[MAX_INTERESTS][MAX_INTEREST_NAME], char names[MAX_STOCK_NAMES][MAX_NAME]);
+void create_user_folder(char *directory, UserPosition user);
+void save_connections_in_files(Graph graph, UserPosition user);
 
 #endif

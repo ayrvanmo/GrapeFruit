@@ -7,7 +7,7 @@
 #define GRAPH_H
 
 // Provisorio
-#define GRAPH_HASH_SIZE 10 // CONSTANTE PARA VER EL TAMANHO DE LA TABLA
+#define GRAPH_HASH_SIZE 20 // CONSTANTE PARA VER EL TAMANHO DE LA TABLA
 
 typedef struct _graphNode GraphNode;
 typedef GraphNode *PtrToGraphNode;

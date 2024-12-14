@@ -67,3 +67,27 @@ bool increasing(double a, double b){
 bool decreasing(double a, double b){
     return a >= b;
 }
+
+bool coin_toss(double probability)
+{
+    double random = (double)rand()/(double)RAND_MAX;
+    if(random <= probability){
+        //printf("Seguira al usuario! (1)\n");
+        return 1;
+    }
+    else{
+        //printf("No seguira al usuario! (0)\n");
+        return 0;
+    }
+}
+
+int profiles_per_tick(int userNumber)
+{
+    float base = (userNumber + 180)/userNumber;
+    printf("Esta es la base %f\n", base);
+    int maxProfiles = floor(pow(base, 2.0/3.0));
+    printf("Max profiles: %d\n", maxProfiles);
+    int profileNumber = rand() % maxProfiles + 1;
+    printf("Usuarios creados en este tick: %d\n", profileNumber);
+    return profileNumber;
+}

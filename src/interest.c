@@ -51,6 +51,10 @@ void print_interestTable(InterestTable interestTable)
 InterestPosition insert_interestNode(char*key, InterestTable interestTable)
 {
     int index = jenkins_hash(key) % INTEREST_TABLE_SIZE;
+    if(search_int_in_interestTable(interestTable, key) != NULL){
+        printf("El interes ya existe!\n");
+        return NULL;
+    }
     InterestPosition P = insert_int_to_interestList(interestTable[index].interestList, key);
     if(P!=NULL){
         interestTable[index].interestNumber++;

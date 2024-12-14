@@ -85,6 +85,7 @@ void delete_preference(PreferencesPosition P, PreferencesList preferencesList)
     }
     PreferencesPosition prev = find_preference_prev(P, preferencesList);
     prev->next = P->next;
+    free(P->key);
     free(P);
 }
 
