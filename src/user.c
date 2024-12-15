@@ -702,6 +702,8 @@ void save_user_info_in_files(UserPosition user)
 		Q = Q->next;
 	}
 	fclose(file);
+	free(postPath);
+	free(userDir);
 }
 void save_connections_in_files(Graph graph, UserPosition user)
 {

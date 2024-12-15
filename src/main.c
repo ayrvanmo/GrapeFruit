@@ -22,17 +22,17 @@ int main(int argc, char **argv){
         printf("ingrese un nombre (max %d caracteres): ", MAX_NAME - 1);
 
         if (scanf("%s", name) != 1 || strlen(name) >= MAX_NAME) {
-            printf("Error: nombre inválido o muy largo\n");
+            printf("Error: nombre no valido\n");
             exit(-1);
         }
         printf("ingrese una descripcion (max %d caracteres): ", MAX_DESCRIPTION - 1);
         if (scanf(" %[^\n]", description) != 1 || strlen(description) >= MAX_DESCRIPTION) {
-            printf("Error: descripción inválida o muy larga\n");
+            printf("Error: descripción no valida o muy larga\n");
             exit(-1);
         }
         printf("ingrese una edad (18-60): ");
         if (scanf("%d", &age) != 1 || age < 18 || age > 60 ){
-            printf("Error: edad inválida\n");
+            printf("Error: edad no valida\n");
             exit(-1);
         }
         UserList users = make_empty_userList(NULL);
@@ -51,13 +51,12 @@ int main(int argc, char **argv){
         fill_array_with_interests_from_file(interest);
         for(int i = 0; i < 10; i++){
             if (!insert_interestNode(interest[rand() % MAX_INTERESTS], newUser->interests) && search_int_in_interestTable(newUser->interests, interest[rand() % MAX_INTERESTS]) == NULL) {
-                //printf("Error: no se pudo insertar el interés\n");
                 break;
             }
         }
         create_user_folder("data/users/", newUser);
         save_user_info_in_files(newUser);
-        printf("Usuario creado exitosamente\n");
+        printf("Usuario creado con exito\n");
         delete_userList(users);
         exit(0);
     }
@@ -232,8 +231,8 @@ int main(int argc, char **argv){
 
     //print_userList(users);
     //print_graph(graph);
-    delete_userList(users);
-    delete_graph(graph);
+    //delete_userList(users);
+    //delete_graph(graph);
     return 0;
 
 }
