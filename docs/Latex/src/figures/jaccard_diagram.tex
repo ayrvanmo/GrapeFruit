@@ -1,0 +1,18 @@
+
+% jaccard_diagram.tex
+\begin{tikzpicture}[node distance=\nodeDistance]
+
+% Nodos del algoritmo de Jaccard
+\node (start) [startstop] {Inicio};
+\node (calc_inter) [process, below of=start] {Calcular la intersecci\'on $A \cap B$};
+\node (calc_union) [process, below of=calc_inter] {Calcular la uni\'on $A \cup B$};
+\node (calc_jaccard) [process, below of=calc_union] {Calcular $I_{jaccard} = \frac{|A \cap B|}{|A \cup B|}$};
+\node (output) [startstop, below of=calc_jaccard] {Mostrar el resultado};
+
+% Flechas del algoritmo de Jaccard
+\draw [arrow] (start) -- (calc_inter);
+\draw [arrow] (calc_inter) -- (calc_union);
+\draw [arrow] (calc_union) -- (calc_jaccard);
+\draw [arrow] (calc_jaccard) -- (output);
+
+\end{tikzpicture}
