@@ -1,0 +1,105 @@
+\documentclass[9pt,letterpaper,onecolumn]{rho-class/rho}
+\usepackage[spanish,es-nodecimaldot,es-noindentfirst]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\setlength{\parindent}{0pt}  % Elimina la sangría
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\setbool{rho-abstract}{true} % Set false to hide the abstract
+\setbool{corres-info}{true} % Set false to hide the corresponding author section
+\addbibresource{rho.bib}
+
+%----------------------------------------------------------
+% TITLE
+%----------------------------------------------------------
+
+%\journalname{Example Template}
+\title{TAREA 4: PONGAMOSLE NOMBRE DESPUES}
+
+%----------------------------------------------------------
+% AUTHORS AND AFFILIATIONS
+%----------------------------------------------------------
+\author[$\dagger$]{Manuel González}
+\author[$\dagger$]{Pablo Gómez}
+\author[$\dagger$]{Ayrton Morrison}
+\author[$\dagger$]{Emmanuel Velásquez}
+
+
+%----------------------------------------------------------
+
+%\affil[1]{Affiliation of author one}
+%\affil[2]{Affiliation of author two}
+%\affil[3]{Affiliation of author three}
+\affil[$\dagger$]{Universidad de Magallanes}
+
+%----------------------------------------------------------
+% DATES
+%----------------------------------------------------------
+
+\dates{Este informe fue compilado el \today}
+
+%----------------------------------------------------------
+% FOOTER INFORMATION
+%----------------------------------------------------------
+
+%\leadauthor{Author last name et al.}
+%\footinfo{Creative Commons CC BY 4.0}
+\smalltitle{Estructuras de datos}
+%\institution{College name}
+\theday{\today} %\today
+
+%----------------------------------------------------------
+% ARTICLE INFORMATION
+%----------------------------------------------------------
+
+%\corres{Provide the corresponding author information and publisher here.}
+%\email{example@organization.com.}
+%\doi{\url{https://www.doi.org/exampledoi/XXXXXXXXXX}}
+
+%\received{March 20, 2024}
+%\revised{April 16, 2024}
+%\accepted{April 20, 2024}
+%\published{May 21, 2024}
+
+%\license{Rho LaTeX Class \ccLogo\ This document is licensed under Creative Commons CC BY 4.0.}
+
+%----------------------------------------------------------
+% ABSTRACT
+%----------------------------------------------------------
+
+\begin{abstract}
+\end{abstract}
+
+%----------------------------------------------------------
+
+\keywords{}
+
+%----------------------------------------------------------
+\begin{document}
+    \maketitle
+    \thispagestyle{firststyle}
+    \tableofcontents
+    %\linenumbers
+    %----------------------------------------------------------
+
+
+    \newpage
+    \input{src/sections/introduccion.tex}
+    \input{src/sections/objetivos.tex}
+    \newpage
+    \input{src/sections/desarrollo.tex}
+    \newpage
+    \input{src/sections/implementacion.tex}
+    \newpage
+    \input{src/sections/equipo.tex}
+    \newpage
+    \input{src/sections/mejoras.tex}
+    \newpage
+    \input{src/sections/ejemplo.tex}
+    \newpage
+    \input{src/sections/conclusiones.tex}
+
+    \newpage
+    \nocite{*}
+    \printbibliography
+\end{document}
