@@ -4,15 +4,23 @@
 
 En este proyecto se desarrollara una "red social" simplificada. Para lograr esto se utilizaran diversas **estructuras de datos**, con el fin de lograr un balance entre eficiencia de espacio y tiempo.
 
-Los principales apartados a desarrollar son:
-- Sugerencias eficientes e inteligentes a traves de algoritmos de similaridad entre grupos.
-- Creacion de perfiles de usuario.
-- Historial de perfiles/mensajes.
+Los principales aspectos de este proyecto son:
+- Manejo correcto y eficiente de datos, atraves de EDD adecuadas.
+- Manejo correcto y controlado de archivos.
+- Manejo de datos a "tiempo real".
+- Evolucion de un grafo a traves del tiempo.
+- Manejo destacable de memoria.
 
 
 ## Ejecucion Del Programa
-Para ejecutar este programa se debe realizar el comando `make folders`, despues de esto se utiliza `make` para el programa, acto siguiente se debe mover a la carpeta `build` y desde ahi ejecutar la liena de codigo `./grape.out -h`, lo que le dara acceso al modo de uso del programa.
+Para ejecutar este programa se debe realizar el comando `make folders`, despues de esto se utiliza `make database` para mover los recursos necesarios para la correcta ejecucion del programa, acto siguiente se debe ubicar en la carpeta `build` y desde ahi ejecutar la linea de codigo `./grape.out -h`, lo que le dara acceso al modo de uso del programa.
 Existen limitaciones como falta de condicionales en algunos casos (como por ejemplo en el generador de usuarios al anhadir mas de un string), pero fuera de ese caso el programa funciona con normalidad.
+
+Para limpiar los archivos generados por el programa puede utilizar `make clean`, el cual removera la totalidad de los recursos generados por el programa.
+
+*⚠️ Advertencia*
+El programa cuenta con una creacion de usuarios sin "limite" dentro de este (esto no es de mucha importancia debido a que esta hecho de tal manera que la creacion de usuarios de caiga asintoticamente 1 usuario por tick). Por lo que se recomienda discrecion a la hora de utilizar el programa por grandes periodos de tiempo.
+
 
 ## Documentacion
 Doxygen se encuentra habilitado para este programa, sin embargo por problemas tecnicos y de tiempo no fue posible implementar documentacion apropiada para todo el codigo.

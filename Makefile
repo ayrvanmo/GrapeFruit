@@ -23,7 +23,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 .PHONY: clean folders send
 clean:
 	rm -f $(OBJ_FILES)
-	rm -f build/*
+	rm -fr build/*
 	rm -fr docs/doxygen/
 	rm -fr docs/Latex/build/
 
@@ -33,8 +33,12 @@ folders:
 #doc:
 #doxygen
 
+database:
+	cp -r resources/data build/
+
+
 run:
-	@./build/$(EXEC) --help
+	@./build/$(EXEC) -h
 
 send:
 	tar czf $(GRUPO)-$(NTAR).tgz --transform 's,^,$(GRUPO)-$(NTAR)/,' Makefile src incs docs
