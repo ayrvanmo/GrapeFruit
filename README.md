@@ -11,7 +11,7 @@ Los principales apartados a desarrollar son:
 -
 
 ## Ejecucion Del Programa
-*⚠️ EN DESARRROLLO ⚠️*
+Ejercutar desde build
 
 ## Gestion Ramas
 Las gestion de ramas en este proyecto sera la siguiente:
