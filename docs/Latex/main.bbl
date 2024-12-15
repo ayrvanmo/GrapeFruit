@@ -16,5 +16,39 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{SpanishStopWords}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8091a2fad99f8e5fdf6fc1a23b459e5e}{%
+           family={C.},
+           familyi={C\bibinitperiod},
+           given={Mauricio\bibnamedelima Matias},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \strng{fullhash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \strng{bibnamehash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \strng{authorbibnamehash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \strng{authornamehash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \strng{authorfullhash}{8091a2fad99f8e5fdf6fc1a23b459e5e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{stop-words}
+      \field{year}{2022}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://github.com/Alir3z4/stop-words/blob/master/spanish.txt
+      \endverb
+      \verb{url}
+      \verb https://github.com/Alir3z4/stop-words/blob/master/spanish.txt
+      \endverb
+      \warn{\item online entry 'SpanishStopWords' (rho.bib): Invalid format '2024-30-10' of date field 'urldate' - ignoring}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

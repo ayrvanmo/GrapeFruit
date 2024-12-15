@@ -1,0 +1,18 @@
+
+% coseno_diagram.tex
+\begin{tikzpicture}[node distance=\nodeDistance]
+
+% Nodos del algoritmo del Coseno
+\node (start) [startstop] {Inicio};
+\node (calc_dot) [process, below of=start] {Calcular el producto interno $A \cdot B$};
+\node (calc_magnitudes) [process, below of=calc_dot] {Calcular las magnitudes $||A||$ y $||B||$};
+\node (calc_cosine) [process, below of=calc_magnitudes] {Calcular $I_{coseno} = \frac{A \cdot B}{||A|| \cdot ||B||}$};
+\node (output) [startstop, below of=calc_cosine] {Mostrar el resultado};
+
+% Flechas del algoritmo del Coseno
+\draw [arrow] (start) -- (calc_dot);
+\draw [arrow] (calc_dot) -- (calc_magnitudes);
+\draw [arrow] (calc_magnitudes) -- (calc_cosine);
+\draw [arrow] (calc_cosine) -- (output);
+
+\end{tikzpicture}
