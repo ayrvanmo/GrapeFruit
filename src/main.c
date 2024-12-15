@@ -144,7 +144,6 @@ int main(int argc, char **argv){
                         printf("Post vacio\n");
                         break;
                     }
-                    // Remove trailing newline if present
                     size_t len = strlen(postContent);
                     if (len > 0 && postContent[len-1] == '\n') {
                         postContent[len-1] = '\0';
