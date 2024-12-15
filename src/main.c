@@ -46,7 +46,7 @@ int main(int argc, char **argv){
             exit(-1);
         }
         printf("Ingresando gustos aleatorios\n");
-        
+
         char interest[MAX_INTERESTS][MAX_INTEREST_NAME];
         fill_array_with_interests_from_file(interest);
         for(int i = 0; i < 10; i++){

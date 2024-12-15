@@ -516,7 +516,7 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 		}
 		if(coin_toss(jaccard) == true ){
 			create_graph_edge(userNode, PNode);
-			if(find_friendList_node(PNode->follows, userNode) != NULL && find_friendList_node(user->mutuals, PNode) != NULL){
+			if(find_friendList_node(PNode->follows, userNode) != NULL && find_friendList_node(user->mutuals, PNode) == NULL){
 				printf("Usuario %s y usuario %s son mutuals\n", user->name, P->name);
 				user->mutuals->next = insert_friendList_node(user->mutuals, PNode);
 				user->friendCount++;
@@ -524,7 +524,7 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 				P->friendCount++;
 			}
 		}
-		//ACTIVAR DESPUES 
+		//ACTIVAR DESPUES
 		save_connections_in_files(graph, user);
 		//printf("Jaccard entre %s y %s: %f\n", user->name, P->name, jaccard);
 		P = P->Next;

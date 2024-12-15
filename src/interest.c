@@ -44,7 +44,6 @@ void print_interestTable(InterestTable interestTable)
 {
     printf("Los intereses del usuario son los siguientes: ");
     for(int i=0; i<INTEREST_TABLE_SIZE;i++){
-        
         print_interestList(interestTable[i].interestList);
     }
 }
