@@ -133,6 +133,7 @@ int main(int argc, char **argv){
             case 4:
                 printf(CLEAR_SCREEN);
                 printf("Seguidos por el usuario: %s\n", activeUser->user->name);
+                print_friendList(activeUser->followers);
                 break;
             case 5:
                 printf(CLEAR_SCREEN);
