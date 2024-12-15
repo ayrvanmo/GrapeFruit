@@ -1,6 +1,5 @@
+
 #include "jaccard.h"
-
-
 
 double calculate_jaccard(UserPosition user1, UserPosition user2)
 {
@@ -52,3 +51,4 @@ double calculate_jaccard(UserPosition user1, UserPosition user2)
     return (double)insersection_count/union_count;
 
 }
+

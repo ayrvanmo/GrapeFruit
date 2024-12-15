@@ -31,11 +31,7 @@
 
 char* get_terminal_parameters(int argc, char **argv);
 
-// Funciones para usar como parametros
-bool increasing(double a, double b);
-bool decreasing(double a, double b);
 bool coin_toss(double probability);
-
 int profiles_per_tick(int userNumber);
 
 

@@ -64,6 +64,7 @@ void print_friendList(FriendList FriendList) {
         P = P->next;
     }
     printf(" ]");
+    printf("\n\n\n\n\n");
 }
 
 /**

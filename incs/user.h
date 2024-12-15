@@ -66,5 +66,7 @@ void fill_array_with_names_from_file(char array[MAX_STOCK_NAMES][MAX_NAME]);
 void create_users_batch(UserList list, Graph graph, char interests[MAX_INTERESTS][MAX_INTEREST_NAME], char names[MAX_STOCK_NAMES][MAX_NAME]);
 void create_user_folder(char *directory, UserPosition user);
 void save_connections_in_files(Graph graph, UserPosition user);
+void print_user(UserPosition user);
+void save_user_info_in_files(UserPosition User);
 
 #endif

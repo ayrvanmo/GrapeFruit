@@ -42,8 +42,9 @@ InterestTable init_interestTable()
 
 void print_interestTable(InterestTable interestTable)
 {
+    printf("Los intereses del usuario son los siguientes: ");
     for(int i=0; i<INTEREST_TABLE_SIZE;i++){
-        printf("Hash key: %d\n", i);
+        
         print_interestList(interestTable[i].interestList);
     }
 }
@@ -52,7 +53,7 @@ InterestPosition insert_interestNode(char*key, InterestTable interestTable)
 {
     int index = jenkins_hash(key) % INTEREST_TABLE_SIZE;
     if(search_int_in_interestTable(interestTable, key) != NULL){
-        printf("El interes ya existe!\n");
+        //printf("El interes ya existe!\n");
         return NULL;
     }
     InterestPosition P = insert_int_to_interestList(interestTable[index].interestList, key);
@@ -140,7 +141,10 @@ void print_interestList(InterestList interestList)
 {
     InterestList P = interestList;
     while(P != NULL){
-        printf("Interes: %s\n", P->key);
+        if(P->key != NULL)
+        {
+            printf("Interes: %s\n", P->key);
+        }
         P = P->next;
     }
 }

@@ -28,6 +28,7 @@ UserList get_users_from_directory(char *directory, UserList list)
 		}
 		// En caso de que sea un directorio, se entra en este
 		if(entry->d_type == 4 ){
+			// INFO DEL USUARIO
 			size_t length = strlen(directory) + strlen(entry->d_name) + 2;
 			char *subDir = malloc(length);
 			if(subDir == NULL){
@@ -65,13 +66,49 @@ UserList get_users_from_directory(char *directory, UserList list)
 			}
 			fclose(file);
 			insert_userList_user(list, list, entry->d_name, description, age);
-			printf("Usuario %s insertado en lista de usuarios\n", entry->d_name);
+			//printf("Usuario %s insertado en lista de usuarios\n", entry->d_name);
 			//printf("insertando usuario %s\n con descripcion: %s\n", name,description);
-			free(subDir);
-			free(infoPath);
 
+			free(infoPath);
+			// POSTS DEL USUARIO
+			length = strlen(directory) + strlen(entry->d_name) + 2;
+			snprintf(subDir, length, "%s/%s/", directory, entry->d_name);
+			// Se contruye la ruta de los posts del usuario
+			size_t postsLength = strlen(subDir) + strlen("posts.txt") + 2;
+			char *postsPath = malloc(postsLength);
+			if(postsPath == NULL){
+				closedir(dir);
+				print_error(200, NULL, NULL);
+			}
+			snprintf(postsPath, postsLength, "%s/posts.txt", subDir);
+
+			// Se abre y rpocesa el archivo
+			file = fopen(postsPath, "r");
+			if(file == NULL){
+				print_error(100, postsPath, NULL);
+			}
+
+			char post[MAX_DESCRIPTION];
+			UserPosition user = find_userList_user(list, entry->d_name);
+			if(user == NULL){
+				//printf("Usuario %s no encontrado\n", entry->d_name);
+				continue;
+			}
+			// Leer cada linea del archivo y procesar las publicaciones
+			while (fgets(line, sizeof(line), file) != NULL) {
+				sscanf(line, "%[^\n]", post);
+				//printf("Usuario %s tiene post %s\n", user->name, post);
+				insert_preference(user->posts, post);
+				//print_preferencesList(user->posts);
+			}
+
+			fclose(file);
+			free(postsPath);
+			free(subDir);
 
 		}
+
+
 	}
 	printf("Usuarios cargados\n");
 	closedir(dir);
@@ -101,7 +138,7 @@ Graph get_conections_from_directory(char *directory, UserList list, Graph graph)
 		if(graphNode == NULL){
 			print_error(200, NULL, NULL);
 		}
-		printf("Usuario %s insertado en el grafo\n", P->name);
+		//printf("Usuario %s insertado en el grafo\n", P->name);
 		P = P->Next;
 	}
 	//print_graph(graph);
@@ -214,7 +251,7 @@ Graph get_preferences_from_directory(char *directory, UserList list, Graph graph
 			continue;
 		}
 		// En caso de que sea un directorio, se entra en este
-		if(entry->d_type == 4 ){
+		if(entry->d_type == 4){
 
 			size_t length = strlen(directory) + strlen(entry->d_name) + 2;
 			char *subDir = malloc(length);
@@ -239,18 +276,18 @@ Graph get_preferences_from_directory(char *directory, UserList list, Graph graph
 
 			char preference[MAX_NAME];
 			char line[256];
-			printf("Usuario %s\n", entry->d_name);
+			//printf("Usuario %s\n", entry->d_name);
 			UserPosition user = find_userList_user(list, entry->d_name);
 			///printf("Usuario %s\n", user->name);
 			if(user == NULL){
-				printf("Usuario %s no encontrado\n", entry->d_name);
+				//printf("Usuario %s no encontrado\n", entry->d_name);
 				continue;
 			}
 
 			// Leer cada linea del archivo y procesar las preferencias
 			while (fgets(line, sizeof(line), file) != NULL) {
 				sscanf(line, "%s", preference);
-				printf("Usuario %s tiene preferencia %s\n", user->name, preference);
+				//printf("Usuario %s tiene preferencia %s\n", user->name, preference);
 				insert_interestNode(preference, user->interests);
 			}
 			fclose(file);
@@ -479,7 +516,7 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 		}
 		if(coin_toss(jaccard) == true ){
 			create_graph_edge(userNode, PNode);
-			if(find_friendList_node(PNode->follows, userNode) != NULL ){
+			if(find_friendList_node(PNode->follows, userNode) != NULL && find_friendList_node(user->mutuals, PNode) != NULL){
 				printf("Usuario %s y usuario %s son mutuals\n", user->name, P->name);
 				user->mutuals->next = insert_friendList_node(user->mutuals, PNode);
 				user->friendCount++;
@@ -488,11 +525,13 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 			}
 		}
 		//ACTIVAR DESPUES 
-		//save_connections_in_files(graph, user);
+		save_connections_in_files(graph, user);
 		//printf("Jaccard entre %s y %s: %f\n", user->name, P->name, jaccard);
 		P = P->Next;
 	}
 }
+
+
 
 void create_users_batch(UserList list, Graph graph, char interests[MAX_INTERESTS][MAX_INTEREST_NAME], char names[MAX_STOCK_NAMES][MAX_NAME])
 {
@@ -516,7 +555,7 @@ void create_users_batch(UserList list, Graph graph, char interests[MAX_INTERESTS
 		}
 
 		// ACTIVAR DESPUESSS
-		//create_user_folder("data/users/", P);
+		create_user_folder("data/users/", P);
 
 		//GUARDAR ESTOS DATOS EN EL ARCHIVO DE USUARIOS
 		insert_graphNode(P, graph);
@@ -531,7 +570,7 @@ void create_user_folder(char *directory, UserPosition user)
 	}
 
 	snprintf(userDir, strlen(directory) + strlen(user->name) + 2, "%s/%s/", directory, user->name);
-	printf("Directorio de usuario: %s\n", userDir);
+	//printf("Directorio de usuario: %s\n", userDir);
 	if(mkdir(userDir, 0755) == -1){
 		print_error(200, NULL, NULL);
 	}
@@ -583,7 +622,7 @@ void create_user_folder(char *directory, UserPosition user)
 		print_error(100, preferencesPath, NULL);
 	}
 
-	printf("porsiaca\n");
+	//printf("porsiaca\n");
 	for(int i = 0; i < INTEREST_TABLE_SIZE; i++){
 		InterestPosition P = user->interests[i].interestList;
 		if(P->next != NULL){
@@ -598,6 +637,23 @@ void create_user_folder(char *directory, UserPosition user)
 		}
 	}
 
+	char* postPath = malloc(strlen(userDir) + strlen("posts.txt") + 2);
+	if(postPath == NULL){
+		print_error(200, NULL, NULL);
+	}
+	snprintf(postPath, strlen(userDir) + strlen("posts.txt") + 2, "%s/posts.txt", userDir);
+	file = fopen(postPath, "w");
+	if(file == NULL){
+		print_error(100, postPath, NULL);
+	}
+	PreferencesPosition Q = user->posts->next;
+	while(Q != NULL){
+		fprintf(file, "%s\n", Q->key);
+		Q = Q->next;
+	}
+
+	free(postPath);
+
 	fclose(file);
 	free(preferencesPath);
 	free(userDir);
@@ -607,6 +663,46 @@ void create_user_folder(char *directory, UserPosition user)
 
 }
 
+void save_user_info_in_files(UserPosition user)
+{
+	//GraphPosition userNode = find_graphNode(User->name, graph);
+	char *userDir = malloc(strlen("data/users/") + strlen(user->name) + 2);
+	if(userDir == NULL){
+		print_error(200, NULL, NULL);
+	}
+	snprintf(userDir, strlen("data/users/") + strlen(user->name) + 2, "data/users/%s/", user->name);
+
+	char *infoPath = malloc(strlen(userDir) + strlen("info.txt") + 2);
+	if(infoPath == NULL){
+		print_error(200, NULL, NULL);
+	}
+	snprintf(infoPath, strlen(userDir) + strlen("info.txt") + 2, "%s/info.txt", userDir);
+	FILE *file = fopen(infoPath, "w");
+	if(file == NULL){
+		print_error(100, infoPath, NULL);
+	}
+	fprintf(file, "%d\n", user->age);
+	fprintf(file, "%s\n", user->description);
+	fclose(file);
+	free(infoPath);
+
+	char *postPath = malloc(strlen(userDir) + strlen("posts.txt") + 2);
+	if(postPath == NULL){
+		print_error(200, NULL, NULL);
+	}
+	snprintf(postPath, strlen(userDir) + strlen("posts.txt") + 2, "%s/posts.txt", userDir);
+	file = fopen(postPath, "w");
+	if(file == NULL){
+		print_error(100, postPath, NULL);
+	}
+	PreferencesPosition Q = user->posts->next;
+	//print_preferencesList(user->posts);
+	while(Q != NULL){
+		fprintf(file, "%s\n", Q->key);
+		Q = Q->next;
+	}
+	fclose(file);
+}
 void save_connections_in_files(Graph graph, UserPosition user)
 {
 	GraphPosition userNode = find_graphNode(user->name, graph);
@@ -651,4 +747,15 @@ void save_connections_in_files(Graph graph, UserPosition user)
 	fclose(file);
 	free(mutualsPath);
 	free(userDir);
+}
+
+void print_user(UserPosition user)
+{
+	printf("Nombre: %s\n", user->name);
+	printf("Edad: %d\n", user->age);
+	printf("Descripcion: %s\n", user->description);
+	printf("Intereses: ");
+	print_interestTable(user->interests);
+	printf("Publicaciones: ");
+	print_preferencesList(user->posts);
 }

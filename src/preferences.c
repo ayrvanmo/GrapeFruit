@@ -42,8 +42,10 @@ bool is_empty_preferencesList(PreferencesList preferencesList)
 void print_preferencesList(PreferencesList preferencesList)
 {
     PreferencesPosition P = preferencesList_first(preferencesList);
+        printf("La lista de posts del usuario es la siguiente:\n");
+
     while(P != NULL){
-        printf("%s\n", P->key);
+        printf("Post: %s\n ", P->key);
         P = preferencesList_advance(P);
     }
 }
@@ -72,7 +74,11 @@ PreferencesPosition insert_preference(PreferencesPosition prevPosition, char* ke
     if(newNode == NULL){
         print_error(200, NULL, NULL);
     }
-    newNode->key = key;
+    newNode->key = (char*) malloc(strlen(key) + 1);
+    if(newNode->key == NULL){
+        print_error(200, NULL, NULL);
+    }
+    strcpy(newNode->key, key);
     newNode->next = prevPosition->next;
     prevPosition->next = newNode;
     return newNode;
