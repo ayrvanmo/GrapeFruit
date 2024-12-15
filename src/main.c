@@ -14,6 +14,8 @@ int main(int argc, char **argv){
     if(root_dir == NULL){
         exit(-1);
     }
+    srand(time(NULL));
+
     if(strcmp(root_dir, "create") == 0){
         printf("Creando usuario\n");
         char name[MAX_NAME];
@@ -61,8 +63,6 @@ int main(int argc, char **argv){
         exit(0);
     }
 
-
-    srand(time(NULL));
 
     Graph graph = create_graph(NULL);
     UserList users = make_empty_userList(NULL);
@@ -210,11 +210,7 @@ int main(int argc, char **argv){
 
     //UserPosition P = users->Next;
 
-
-
     //create_users_batch(users, graph, interest, stockNames);
- 
-
 
     //UserPosition newuser = insert_userList_user(users, users, "newuser", "newuser", 20);
     //insert_interestNode("newinterest", newuser->interests);
@@ -227,7 +223,6 @@ int main(int argc, char **argv){
     //    make_recomendations_for_user(P, users, graph);
     //    P = P->Next;
    // }
-
 
     //print_userList(users);
     //print_graph(graph);
