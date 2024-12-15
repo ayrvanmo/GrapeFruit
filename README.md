@@ -19,7 +19,7 @@ Existen limitaciones como falta de condicionales en algunos casos (como por ejem
 Para limpiar los archivos generados por el programa puede utilizar `make clean`, el cual removera la totalidad de los recursos generados por el programa.
 
 *⚠️ Advertencia*
-El programa cuenta con una creacion de usuarios sin "limite" dentro de este (esto no es de mucha importancia debido a que esta hecho de tal manera que la creacion de usuarios de caiga asintoticamente 1 usuario por tick). Por lo que se recomienda discrecion a la hora de utilizar el programa por grandes periodos de tiempo.
+El programa cuenta con una creacion de usuarios sin "límite" dentro de este (esto no es de mucha importancia debido a que está hecho de tal manera que la creación de usuarios decaiga asintóticamente a 1 usuario por tick). Por lo que se recomienda discrecion a la hora de utilizar el programa por grandes periodos de tiempo.
 
 
 ## Documentacion
