@@ -1,7 +1,7 @@
 /**
  * @file preferences.c
  * @author Pendiente
- * @brief Funciones relacionadas con las prefencias de los usuarios
+ * @brief Funciones relacionadas con los comentarios de un usuario
  */
 
 

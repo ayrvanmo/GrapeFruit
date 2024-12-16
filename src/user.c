@@ -526,7 +526,7 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 		}
 		//ACTIVAR DESPUES
 		save_connections_in_files(graph, user);
-		//printf("Jaccard entre %s y %s: %f\n", user->name, P->name, jaccard);
+		printf("Jaccard entre %s y %s: %f\n", user->name, P->name, jaccard);
 		P = P->Next;
 	}
 }
@@ -572,7 +572,7 @@ void create_user_folder(char *directory, UserPosition user)
 	snprintf(userDir, strlen(directory) + strlen(user->name) + 2, "%s/%s/", directory, user->name);
 	//printf("Directorio de usuario: %s\n", userDir);
 	if(mkdir(userDir, 0755) == -1){
-		print_error(200, NULL, NULL);
+		print_error(204, NULL, userDir);
 	}
 	char *infoPath = malloc(strlen(userDir) + strlen("info.txt") + 2);
 	if(infoPath == NULL){
@@ -755,6 +755,7 @@ void print_user(UserPosition user)
 {
 	printf("Nombre: %s\n", user->name);
 	printf("Edad: %d\n", user->age);
+	printf("Cantidad de mutuals: %d", user->friendCount);
 	printf("Descripcion: %s\n", user->description);
 	printf("Intereses: ");
 	print_interestTable(user->interests);

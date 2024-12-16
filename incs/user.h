@@ -18,6 +18,7 @@ typedef PtrToUserNode UserPosition;
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include "graph.h"
 #include "errors.h"
 #include "utilities.h"

@@ -36,11 +36,18 @@ void print_error(int num, char* target, char* obs) {
             exit(-1);
             break;
         case 202:
-            printf("Cantidad invalida, la cantidad ingresada debe ser mayor a 0\n");
+            printf("Cantidad invalida, la cantidad ingresada debe estar en los limites\n");
             exit(-1);
             break;
         case 203:
             printf("Acceso a puntero nulo\n");
+            break;
+        case 204:
+            printf("No se pudo crear el directorio %s\n", target);
+            exit(-1);
+            break;
+        case 205:
+            printf("No se pudo crear el usuario %s\n", target);
             break;
         case 300:
             printf("Lista vacia\n");
@@ -59,6 +66,18 @@ void print_error(int num, char* target, char* obs) {
             break;
         case 305:
             printf("No se pudo abrir el directorio %s\n", target);
+            break;
+        case 306:
+            printf("Usuario no encontrado \n");
+            break;
+        case 307:
+            printf("Nombre no valido\n");
+            break;
+        case 308:
+            printf("Descripcion no valida o muy larga\n");
+            break;
+        case 309:
+            printf("Edad no valida\n");
             break;
         default:
             printf("Codigo de error desconocido\n");

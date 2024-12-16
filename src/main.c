@@ -24,26 +24,27 @@ int main(int argc, char **argv){
         printf("ingrese un nombre (max %d caracteres): ", MAX_NAME - 1);
 
         if (scanf("%s", name) != 1 || strlen(name) >= MAX_NAME) {
-            printf("Error: nombre no valido\n");
+            print_error(307, NULL, NULL);
             exit(-1);
         }
         printf("ingrese una descripcion (max %d caracteres): ", MAX_DESCRIPTION - 1);
         if (scanf(" %[^\n]", description) != 1 || strlen(description) >= MAX_DESCRIPTION) {
-            printf("Error: descripción no valida o muy larga\n");
+            print_error(308, NULL, NULL);
             exit(-1);
         }
         printf("ingrese una edad (18-60): ");
         if (scanf("%d", &age) != 1 || age < 18 || age > 60 ){
-            printf("Error: edad no valida\n");
+            print_error(309, NULL, NULL);
             exit(-1);
         }
         UserList users = make_empty_userList(NULL);
         if (users == NULL) {
+            print_error(200, NULL, NULL);
             exit(-1);
         }
         UserPosition newUser = insert_userList_user(users, users, name, description, age);
         if (newUser == NULL) {
-            printf("Error: no se pudo crear el usuario\n");
+            print_error(205, NULL, name);
             delete_userList(users);
             exit(-1);
         }
@@ -63,7 +64,6 @@ int main(int argc, char **argv){
         exit(0);
     }
 
-
     Graph graph = create_graph(NULL);
     UserList users = make_empty_userList(NULL);
     users =get_users_from_directory("data/users/", NULL);
@@ -75,17 +75,13 @@ int main(int argc, char **argv){
 
     char stockNames[MAX_STOCK_NAMES][MAX_NAME];
     fill_array_with_names_from_file(stockNames);
-    //printf("todo bien1\n");
-    //UserPosition activeUser = find_userList_user(users, root_dir);
-    //printf("todo bien2\n");
+
     GraphPosition activeUser = find_graphNode(root_dir, graph);
-    //printf("todo bien3\n");
+
     if(activeUser == NULL){
-        printf("Usuario no encontrado\n");
+        print_error(306, NULL, NULL);
         exit(-1);
     }
-    //printf("todo bien4\n");
-
 
     while(1){
 
@@ -105,6 +101,8 @@ int main(int argc, char **argv){
             case 1:
                 printf(CLEAR_SCREEN);
                 print_user(activeUser->user);
+                printf("Cantidad de seguidos: %d\n", activeUser->followsNumber);
+                printf("Cantidad de seguidores: %d\n", activeUser->followersNumber);
                 break;
             case 2:
                 printf(CLEAR_SCREEN);
@@ -162,11 +160,11 @@ int main(int argc, char **argv){
                 printf("Escribe el nombre del usuario a buscar: ");
                 scanf("%s", search);
                 if(strlen(search) > MAX_NAME){
-                    printf("Nombre muy largo\n");
+                    print_error(307, NULL, NULL);
                     break;
                 }
                 if(search[0] == '\0'){
-                    printf("Nombre vacio\n");
+                    print_error(307, NULL, NULL);
                     break;
                 }
                 UserPosition searchUser = find_userList_user(users, search);
@@ -174,7 +172,7 @@ int main(int argc, char **argv){
                     printf("Usuario activo\n");
                 }
                 if(searchUser == NULL){
-                    printf("Usuario no encontrado\n");
+                    print_error(306, NULL, NULL);
                 }
                 else{
                     print_user(searchUser);
@@ -198,36 +196,18 @@ int main(int argc, char **argv){
         }
 
         P = users->Next;
-        create_users_batch(users, graph, interest, stockNames);
-        while(P != NULL){
-            make_recomendations_for_user(P, users, graph);
-            P = P->Next;
-        }
+
+        // CREACION DINAMICA DE USUARIOS ACTIVAR EN PRESENTACION
+        // create_users_batch(users, graph, interest, stockNames);
+        // while(P != NULL){
+        //     make_recomendations_for_user(P, users, graph);
+        //     P = P->Next;
+        // }
+        //     sleep(3);
+        //     printf(CLEAR_SCREEN);
 
     }
 
-    //printf("hola");
-
-    //UserPosition P = users->Next;
-
-    //create_users_batch(users, graph, interest, stockNames);
-
-    //UserPosition newuser = insert_userList_user(users, users, "newuser", "newuser", 20);
-    //insert_interestNode("newinterest", newuser->interests);
-    //insert_interestNode("newinterest2", newuser->interests);
-    //insert_graphNode(newuser, graph);
-    //create_user_folder("data/users/", newuser);
-
-    //P=users->Next;
-    //while(P != NULL){
-    //    make_recomendations_for_user(P, users, graph);
-    //    P = P->Next;
-   // }
-
-    //print_userList(users);
-    //print_graph(graph);
-    //delete_userList(users);
-    //delete_graph(graph);
     return 0;
 
 }

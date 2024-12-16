@@ -16,8 +16,6 @@
 #include <math.h>
 #include "errors.h"
 
-
-
 // Colores para texto
 #define CLEAR_SCREEN "\033[H\033[J"
 #define ANSI_COLOR_RED      "\x1b[31m"
