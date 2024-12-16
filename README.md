@@ -54,6 +54,7 @@ Dentro del archivo [errors.c](src/errors.c) se encuentra la función `print_erro
 | 307 | Nombre no válido |
 | 308 | Descripción no válida o muy larga |
 | 309 | Edad no válida |
+
 Donde:
 - 100 - 199 corresponden a errores comunes
 - 200 - 299 corresponden a errores fatales
