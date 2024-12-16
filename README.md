@@ -20,8 +20,9 @@ Para limpiar los archivos generados por el programa puede utilizar `make clean`,
 
 *⚠️ Advertencia 1*
 >El programa cuenta con una creación de usuarios, este es "sin límite" (esto no es de mucha importancia debido a que está hecho de tal manera que la creación de usuarios decaiga asintóticamente a 1 usuario por tick). Por lo que se recomienda discreción a la hora de utilizar el programa por grandes periodos de tiempo.
+
 *⚠️ Advertencia 2*
->Nótese que el programa utiliza las bibliotecas `sys/types.h` y `sys/stat.h` para la creación de directorios. Por lo que solamente se puede utilizar correctamente en sistemas UNIX. 
+>Nótese que el programa utiliza las bibliotecas `sys/types.h` y `sys/stat.h` para la creación de directorios. Por lo que solamente se puede utilizar correctamente en sistemas UNIX.
 
 ## Documentación
 Doxygen se encuentra habilitado para este programa, sin embargo por problemas técnicos y de tiempo no fue posible implementar documentación apropiada para todo el código.
