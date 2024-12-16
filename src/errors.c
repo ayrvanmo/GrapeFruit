@@ -79,6 +79,9 @@ void print_error(int num, char* target, char* obs) {
         case 309:
             printf("Edad no valida\n");
             break;
+        case 310:
+            printf("Entrada no valida\n");
+            break;
         default:
             printf("Codigo de error desconocido\n");
     }

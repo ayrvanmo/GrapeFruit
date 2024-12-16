@@ -45,7 +45,7 @@ void print_preferencesList(PreferencesList preferencesList)
         printf("La lista de posts del usuario es la siguiente:\n");
 
     while(P != NULL){
-        printf("Post: %s\n ", P->key);
+        printf("Post: %s\n", P->key);
         P = preferencesList_advance(P);
     }
 }

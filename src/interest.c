@@ -42,7 +42,7 @@ InterestTable init_interestTable()
 
 void print_interestTable(InterestTable interestTable)
 {
-    printf("Los intereses del usuario son los siguientes: ");
+    printf("Los intereses del usuario son los siguientes: \n");
     for(int i=0; i<INTEREST_TABLE_SIZE;i++){
         print_interestList(interestTable[i].interestList);
     }

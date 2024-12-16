@@ -1,0 +1,2 @@
+42
+Me encanta el desarrollo de juegos en C

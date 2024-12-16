@@ -82,7 +82,6 @@ int main(int argc, char **argv){
         print_error(306, NULL, NULL);
         exit(-1);
     }
-
     while(1){
 
         printf("Usuario activo: %s\n", activeUser->user->name);
@@ -96,7 +95,12 @@ int main(int argc, char **argv){
         char postContent[MAX_DESCRIPTION];
         char search[MAX_NAME];
         int option;
-        scanf("%d", &option);
+        if(scanf("%d", &option) != 1){
+            print_error(307, NULL, NULL);
+            while (getchar() != '\n');
+            continue;
+        }
+        while (getchar() != '\n');
         switch(option){
             case 1:
                 printf(CLEAR_SCREEN);
@@ -131,7 +135,7 @@ int main(int argc, char **argv){
             case 4:
                 printf(CLEAR_SCREEN);
                 printf("Seguidos por el usuario: %s\n", activeUser->user->name);
-                print_friendList(activeUser->followers);
+                print_friendList(activeUser->follows);
                 break;
             case 5:
                 printf(CLEAR_SCREEN);
@@ -189,22 +193,27 @@ int main(int argc, char **argv){
                 break;
         }
 
-        UserPosition P = users->Next;
+
+
+        UserPosition P= users->Next;
+
         while(P != NULL){
             save_user_info_in_files(P);
             P = P->Next;
         }
 
-        P = users->Next;
 
         // CREACION DINAMICA DE USUARIOS ACTIVAR EN PRESENTACION
         // create_users_batch(users, graph, interest, stockNames);
-        // while(P != NULL){
+        // sleep(3);
+        // P = users->Next;
+        //  while(P != NULL){
         //     make_recomendations_for_user(P, users, graph);
         //     P = P->Next;
         // }
-        //     sleep(3);
-        //     printf(CLEAR_SCREEN);
+        // printf("Recomendaciones realizadas\n");
+        // sleep(3);
+        // printf(CLEAR_SCREEN);
 
     }
 

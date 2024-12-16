@@ -502,6 +502,7 @@ UserPosition find_userList_prev_user(UserList L, UserPosition user)
 void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 {
 	UserPosition P = list->Next;
+	bool mutualConection = false;
 	while(P != NULL){
 		if(P == user){
 			P = P->Next;
@@ -522,9 +523,13 @@ void make_recomendations_for_user(UserPosition user, UserList list, Graph graph)
 				user->friendCount++;
 				P->mutuals->next = insert_friendList_node(P->mutuals, userNode);
 				P->friendCount++;
+				mutualConection = true;
 			}
 		}
 		//ACTIVAR DESPUES
+		if(mutualConection == true){
+			save_connections_in_files(graph, P);
+		}
 		save_connections_in_files(graph, user);
 		printf("Jaccard entre %s y %s: %f\n", user->name, P->name, jaccard);
 		P = P->Next;
@@ -755,9 +760,9 @@ void print_user(UserPosition user)
 {
 	printf("Nombre: %s\n", user->name);
 	printf("Edad: %d\n", user->age);
-	printf("Cantidad de mutuals: %d", user->friendCount);
+	printf("Cantidad de mutuals: %d\n", user->friendCount);
 	printf("Descripcion: %s\n", user->description);
-	printf("Intereses: ");
+	//printf("Intereses: ");
 	print_interestTable(user->interests);
 	printf("Publicaciones: ");
 	print_preferencesList(user->posts);
